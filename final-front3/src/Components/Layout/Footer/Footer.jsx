@@ -2,9 +2,9 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <footer>
+    <footer style={{display: 'flex', justifyContent:'center'}}>
         <p>Powered by</p>
-        <img src="./img/DH.png" alt='DH-logo' />
+        <img style={{width:'20%'}} src="./public/images/DH.png" alt='DH-logo' />
     </footer>
   )
 }

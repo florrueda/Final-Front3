@@ -1,19 +1,19 @@
-import React from 'react'
+import React from 'react';
 
-
-//Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
-
-const DentistDetail = () => {
- 
-  // Consumiendo el parametro dinamico de la URL deberan hacer un fetch a un user en especifico
-
-  return (
-    <>
-      <h1>Detail Dentist id </h1>
-      {/* aqui deberan renderizar la informacion en detalle de un user en especifico */}
-      {/* Deberan mostrar el name - email - phone - website por cada user en especifico */}
-    </>
-  )
+const DentistDetail = ({dentist}) => {
+    return (
+        <div>
+        {/* aqui deberan renderizar la informacion en detalle de un user en especifico */}
+        {/* Deberan mostrar el name - email - phone - website por cada user en especifico */}
+            <h1>Detalle dentista {dentist.id} </h1>
+            <div style={{border: '2px solid white'}}>
+                    <h2>Nombre: {dentist.name}</h2>
+                    <h2>Email: {dentist.email}</h2>
+                    <p>Telefono: {dentist.phone}</p>
+                    <p>Pagina web: {dentist.website}</p>
+                </div>
+        </div>
+    );
 }
 
-export default DentistDetail
+export default DentistDetail;
