@@ -1,15 +1,37 @@
-import React from "react";
-
-//Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
+import React, { useContext } from "react";
+import { GlobalContext } from "../../../Context/GlobalContext";
+import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 
 const Favs = () => {
+  const { state } = useContext(GlobalContext);
 
   return (
     <>
-      <h1>Dentists Favs</h1>
+      <h1>Dentistas Favoritos</h1>
       <div className="card-grid">
-        {/* este componente debe consumir los destacados del localStorage */}
-        {/* Deberan renderizar una Card por cada uno de ellos */}
+        {state.favs.map((fav) => (
+          <Card sx={{ maxWidth: 345, textAlign: "center" }} key={fav.id}>
+            <CardMedia
+              sx={{ height: 140 }}
+              image="https://res.cloudinary.com/drzyncm5r/image/upload/v1680836029/doctor_ml6xtf.jpg"
+              title={fav.name}
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                {fav.name}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Email: {fav.email}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Telefono: {fav.phone}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Pagina web: {fav.website}
+              </Typography>
+            </CardContent>
+          </Card>
+        ))}
       </div>
     </>
   );

@@ -9,8 +9,10 @@ import DentistsContainer from "./Components/Pages/Dentists/Dentists.container";
 import DentistDetailContainer from "./Components/Pages/DentistDetail/DentistDetail.container";
 
 function App() {
+
+
   return (
-    <div className="App">
+    <div>
       <BrowserRouter>
         <GlobalContextProvider>
           <Routes>

@@ -16,7 +16,7 @@ const DentistsContainer = () => {
 
     return (
         <div>
-            <Dentists state={state}/>
+            <Dentists users={state.users} dispatch={dispatch} favs={state.favs}/>
         </div>
     );
 }

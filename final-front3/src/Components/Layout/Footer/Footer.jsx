@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer style={{display: 'flex', justifyContent:'center'}}>
         <p>Powered by</p>
-        <img style={{width:'20%'}} src="./public/images/DH.png" alt='DH-logo' />
+        <img style={{width:'20%'}} src="https://res.cloudinary.com/drzyncm5r/image/upload/v1680836029/DH_eyp6pf.png" alt='DH-logo' />
     </footer>
   )
 }

@@ -1,24 +1,24 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useContext} from 'react'
 import {useParams} from 'react-router-dom'
 import { getDentistById } from '../../../Services/DentistService';
 import DentistDetail from './DentistDetail';
-
-//Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
+import { GlobalContext } from '../../../Context/GlobalContext';
 
 const DentistDetailContainer = () => {
   
-  // Consumiendo el parametro dinamico de la URL deberan hacer un fetch a un user en especifico
   const {id} = useParams();
-  const [dentist, setDentist] = useState({})
+  const {state, dispatch} = useContext(GlobalContext)
   
   useEffect(() => {
-    getDentistById(id)
-    .then(res => setDentist(res.data))
+    
+    const dentist = getDentistById(id);
+            dentist.then(res => {dispatch({type: "GET_USER", payload: res.data})})
+            dentist.catch(err => console.log(err))
 }, []);
 
   return (
     <>
-      <DentistDetail dentist={dentist}/>
+      <DentistDetail state={state}/>
     </>
   )
 }
