@@ -20,10 +20,10 @@ const globalReducer = (state, action)=> {
         case "GET_USERS":
             return {...state, users:action.payload}
         case "GET_USER":
-                return {...state, user:action.payload}
+            return {...state, user:action.payload}
         case "SWITCH_MODE":
             return {...state, isDark: !state.isDark}
-            case "HANDLE_FAVORITE":
+        case "HANDLE_FAVORITE":
                 const isInFavorite = state.favs.some(
                   (fav) => fav.id === action.payload.id
                 );
@@ -32,7 +32,7 @@ const globalReducer = (state, action)=> {
                   ? removefav(action.payload.id, state)
                   : localStorage.setItem("favs", JSON.stringify([...state.favs, action.payload]));
           
-                return isInFavorite
+            return isInFavorite
                   ? { ...state, favs: removefav(action.payload.id, state) }
                   : { ...state, favs: [...state.favs, action.payload] };
         default:

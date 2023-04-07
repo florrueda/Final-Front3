@@ -1,20 +1,21 @@
+import React, { useContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Layout from "./Components/Layout/Layout";
 import Home from "./Components/Pages/Home/Home";
 import Favs from "./Components/Pages/Favs/Favs";
 import Contact from "./Components/Pages/Contact/Contact";
-import GlobalContextProvider from "./Context/GlobalContext";
 import DentistsContainer from "./Components/Pages/Dentists/Dentists.container";
 import DentistDetailContainer from "./Components/Pages/DentistDetail/DentistDetail.container";
+import { GlobalContext } from "./Context/GlobalContext";
 
 function App() {
 
+  const {state} = useContext(GlobalContext);
 
   return (
-    <div>
+    <div className={state.isDark ? "dark" : "light"}>
       <BrowserRouter>
-        <GlobalContextProvider>
           <Routes>
             <Route element={<Layout />}>
               <Route path="/" element={<Home />} />
@@ -30,7 +31,6 @@ function App() {
 
             <Route path="*" element={<h1>404 not found</h1>} />
           </Routes>
-        </GlobalContextProvider>
       </BrowserRouter>
     </div>
   );

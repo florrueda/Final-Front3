@@ -5,7 +5,6 @@ import Switch from "@mui/material/Switch";
 import { styled } from "@mui/material/styles";
 import FormControlLabel from "@mui/material/FormControlLabel";
 
-//Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const Navbar = () => {
   const { state, dispatch } = useContext(GlobalContext);
@@ -65,9 +64,7 @@ const Navbar = () => {
   return (
     <div style={{ display: "flex", justifyContent: "space-around" }}>
       <h2>Digital House</h2>
-      <nav style={{ display: "flex", alignItems: "center" }}>
-        {/* Aqui deberan agregar los liks correspondientes a las rutas definidas */}
-
+      <nav id="navbar" style={{ display: "flex", alignItems: "center" }}>
         <div className="navlinks">
           <NavLink
             to="/"

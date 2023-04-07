@@ -16,8 +16,8 @@ const DentistCard = ({ users, dispatch, favs }) => {
       <Card sx={{ maxWidth: 345 }} key={users.id}>
         <CardHeader
           avatar={
-            <Avatar sx={{ bgcolor: "red" }} aria-label="recipe">
-              R
+            <Avatar aria-label="recipe">
+              {users.name.split("")[0]}
             </Avatar>
           }
           title={users.name}
@@ -34,6 +34,7 @@ const DentistCard = ({ users, dispatch, favs }) => {
           <IconButton
             aria-label="add to favorites"
             onClick={() => dispatch({ type: "HANDLE_FAVORITE", payload: users })}
+            style={{backgroundColor: "white"}}
           >
             <FavoriteIcon
               color={
