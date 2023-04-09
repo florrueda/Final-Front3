@@ -1,9 +1,16 @@
 import React, { useContext } from "react";
 import { GlobalContext } from "../../../Context/GlobalContext";
-import { Card, CardContent, CardMedia, Typography } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  IconButton,
+  Typography,
+} from "@mui/material";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const Favs = () => {
-  const { state } = useContext(GlobalContext);
+  const { state, dispatch } = useContext(GlobalContext);
 
   return (
     <>
@@ -30,6 +37,21 @@ const Favs = () => {
                 Pagina web: {fav.website}
               </Typography>
             </CardContent>
+            <IconButton
+              aria-label="add to favorites"
+              onClick={() =>
+                dispatch({ type: "HANDLE_FAVORITE", payload: fav })
+              }
+              style={{ backgroundColor: "white" }}
+            >
+              <FavoriteIcon
+                color={
+                  state.favs.some((favorite) => favorite.id === fav.id)
+                    ? "error"
+                    : "disabled"
+                }
+              />
+            </IconButton>
           </Card>
         ))}
       </div>
