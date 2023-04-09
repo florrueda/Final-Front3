@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./App.css";
 import Layout from "./Components/Layout/Layout";
 import Home from "./Components/Pages/Home/Home";
 import Favs from "./Components/Pages/Favs/Favs";

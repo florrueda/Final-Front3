@@ -1,56 +1,72 @@
 import React, { useState } from "react";
+import TextField from "@mui/material/TextField";
+import { Button } from "@mui/material";
+import Swal from 'sweetalert2'
 
 const Form = () => {
-  //Aqui deberan implementar el form completo con sus validaciones
   const [data, setData] = useState({
-    name: '',
-    email: ''
+    name: "",
+    email: "",
   });
 
-  const [error, setError] = useState(false)
+  const [error, setError] = useState(false);
 
-  const [submitMessage, setSubmitMessage] = useState(false)
+  const [submitMessage, setSubmitMessage] = useState(false);
 
   const handleChange = (e) => {
-    setData({...data, [e.target.name]: e.target.value})
-  }
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const emailIsValid = data.email.includes('@');
-    const nameIsValid = data.name.length > 5
+    const emailIsValid = data.email.includes("@") > 0;
+    const nameIsValid = data.name.length > 5;
 
-    if(!nameIsValid || !emailIsValid) {
-      setError(true)
+    if (!nameIsValid || !emailIsValid) {
+      setError(true);
+    } else {
+      setError(false);
+      setSubmitMessage(true);
+      console.log("Se envio y los datos son:", data);
     }
+  };
 
-    setSubmitMessage(true)
-    console.log("Se envio y los datos son:" , data);
+  const submitMessageAlert = () => {
+    Swal.fire({
+      title: `Gracias ${data.name}, te contactaremos cuando antes vía mail`,
+      icon: 'success',
+      showConfirmButton: false,
+      timer: 1500
+    })
   }
 
   return (
-    <div>
+    <div id='form'>
       <form onSubmit={handleSubmit}>
-       <input type='text' name='name' placeholder="Nombre completo" onChange={handleChange}></input>
-       <input type='email' name='email' placeholder="Email" onChange={handleChange}></input>
-       {
-        error  && <span style={{color: "red" , fontSize: "1rem"}}>Por favor verifique su información nuevamente</span>
-       }
-       <button type='submit'>Enviar</button>
-       {
-        submitMessage && <span style={{color: "red" , fontSize: "1rem"}}>Gracias {data.name}, te contactaremos cuando antes vía mail</span>
-       }
+        <TextField
+          id="outlined-basic"
+          label="Nombre completo"
+          name="name"
+          variant="outlined"
+          onChange={handleChange}
+        />
+        <TextField
+          id="outlined-basic"
+          label="Email"
+          name="email"
+          variant="outlined"
+          onChange={handleChange}
+        />
+        {error && (
+          <span style={{ color: "red", fontSize: "1rem" }}>
+            Por favor verifique su información nuevamente
+          </span>
+        )}
+        <Button variant="contained" type='submit'>Enviar</Button>
+        {submitMessage && submitMessageAlert()}
       </form>
     </div>
   );
 };
 
 export default Form;
-
-// Pagina 2: Contacto
-// En esta pagina deberán implementar un Form (con sus validaciones pertinentes) que capture la información del usuario que desea contactar con la empresa. Los campos serán los siguientes:
-
-// Nombre completo (con longitud mayor a 5)
-// Email (con formato correcto de email)
-// En caso de haber un error mostrar el siguiente mensaje de error: Por favor verifique su información nuevamente
-// Una vez "enviado"( no se envía a ningún servidor pero podemos mostrar por consola los datos submiteados) el formulario deberán mostrar un mensaje de éxito que contenga el siguiente formato: Gracias [nombre del usuario], te contactaremos cuando antes vía mail

@@ -8,7 +8,7 @@ const Favs = () => {
   return (
     <>
       <h1>Dentistas Favoritos</h1>
-      <div className="card-grid">
+      <div className="favs-grid">
         {state.favs.map((fav) => (
           <Card sx={{ maxWidth: 345, textAlign: "center" }} key={fav.id}>
             <CardMedia

@@ -14,6 +14,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 const DentistCard = ({ users, dispatch, favs }) => {
   return (
       <Card sx={{ maxWidth: 345 }} key={users.id}>
+      <Link to={`/dentista/${users.id}`}>
         <CardHeader
           avatar={
             <Avatar aria-label="recipe">
@@ -46,6 +47,7 @@ const DentistCard = ({ users, dispatch, favs }) => {
             <Button variant="contained">Ver detalle</Button>
           </Link>
         </CardActions>
+        </Link>
       </Card>
   );
 };

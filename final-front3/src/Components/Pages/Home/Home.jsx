@@ -5,9 +5,9 @@ import { Button } from "@mui/material";
 const Home = () => {
 
   return (
-    <div >
+    <div className="home">
       <h1>Home</h1>
-      <div className="card-grid">
+      <div>
         <Link to="/dentistas">
           <Button variant="contained">Ir a los dentistas</Button>
         </Link>
