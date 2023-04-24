@@ -1,12 +1,35 @@
-import React, { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { useNavigate, Outlet } from "react-router-dom";
 import { GlobalContext } from "../../../Context/GlobalContext";
 import Switch from "@mui/material/Switch";
 import { styled } from "@mui/material/styles";
 import FormControlLabel from "@mui/material/FormControlLabel";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import CssBaseline from "@mui/material/CssBaseline";
+import Drawer from "@mui/material/Drawer";
+import IconButton from "@mui/material/IconButton";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
+import MenuIcon from "@mui/icons-material/Menu";
+import Toolbar from "@mui/material/Toolbar";
 
+const drawerWidth = 200;
 
-const Navbar = () => {
+const Navbar = (props) => {
+
+  const { window } = props;
+
+  const [mobileOpen, setMobileOpen] = useState(false);
+  
+  const navigate = useNavigate()
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+
   const { state, dispatch } = useContext(GlobalContext);
 
   const handleChange = () => {
@@ -61,49 +84,134 @@ const Navbar = () => {
     },
   }));
 
-  return (
-    <div style={{ display: "flex", justifyContent: "space-around" }}>
-      <h2>Digital House</h2>
-      <nav id="navbar" style={{ display: "flex", alignItems: "center" }}>
-        <div className="navlinks">
-          <NavLink
-            to="/"
-            className="navlink"
-            style={{ margin: "1rem", textAlign: "center" }}
-          >
-            Home
-          </NavLink>
-          <NavLink
-            to="/dentistas"
-            className="navlink"
-            style={{ margin: "1rem", textAlign: "center" }}
-          >
-            Dentistas
-          </NavLink>
-          <NavLink
-            to="/favs"
-            className="navlink"
-            style={{ margin: "1rem", textAlign: "center" }}
-          >
-            Favoritos
-          </NavLink>
-          <NavLink
-            to="/contacto"
-            className="navlink"
-            style={{ margin: "1rem", textAlign: "center" }}
-          >
-            Contacto
-          </NavLink>
-        </div>
+  const drawer = (
+    <div>
+      <Toolbar />
+      <Box
+        display={"flex"}
+        flexDirection="column"
+        spacing={0}
+        justifyContent="center"
+        alignItems={"center"}
+      >
+      </Box>
+      <List>
+        <ListItem disablePadding>
+          <ListItemButton onClick={()=>navigate("/")}>
+            <ListItemText primary={"Home"} className="a"/>
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton onClick={()=>navigate("/dentistas")}>
+            <ListItemText primary={"Dentistas"} className="a"/>
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton onClick={()=>navigate("/favs")}>
+            <ListItemText primary={"Favoritos"} className="a"/>
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton onClick={()=>navigate("/contacto")}>
+            <ListItemText primary={"Contacto"} className="a"/>
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
         <FormControlLabel
           checked={state.isDark}
           onChange={handleChange}
           control={<MaterialUISwitch sx={{ m: 1 }} />}
-          label="MUI switch"
+          label=""
         />
-      </nav>
+        </ListItem>
+      </List>
+    </div>
+  );
+
+  const container =
+    window !== undefined ? () => window().document.body : undefined;
+
+  return (
+    <div>
+     <Box sx={{ display: "flex", justifyContent:"center" }}>
+      <CssBaseline />
+      <AppBar
+        position="fixed"
+        sx={{
+          width: { sm: `calc(100% - ${drawerWidth}px)` },
+        }}
+      >
+        <Toolbar
+          sx={{ gap: "20px", display: "flex", justifyContent: "space-between", backgroundColor: "#fff" }}
+        >
+          <IconButton
+            color="black"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{ mr: 2, display: { sm: "none" } }}
+          >
+            <MenuIcon color="black" />
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+      <Box
+        component="nav"
+        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+        aria-label="mailbox folders"
+      >
+        <Drawer
+          container={container}
+          variant="temporary"
+          open={mobileOpen}
+          anchor={"left"}
+          onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true,
+          }}
+          sx={{
+            display: { xs: "block", sm: "none" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+              backgroundColor: "#fff",
+            },
+          }}
+        >
+          {drawer}
+        </Drawer>
+        <Drawer
+          variant="permanent"
+          sx={{
+            display: { xs: "none", sm: "block" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+              backgroundColor: "#fff",
+            },
+          }}
+          open
+        >
+          {drawer}
+        </Drawer>
+      </Box>
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          py: 4,
+          width: { sm: `calc(100% - ${drawerWidth}px)` },
+          minHeight: "100vh",
+        }}
+      >
+        <Toolbar />
+        <Outlet></Outlet>
+      </Box>
+    </Box>
     </div>
   );
 };
 
 export default Navbar;
+
+

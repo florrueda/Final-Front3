@@ -36,28 +36,21 @@
   
   }
   
-  .dark a {
-    color: white;
+  .dark .a {
+    color: black;
   }
   
-  .dark a:hover {
-    color: black;
+  .dark .a:hover {
+    color: grey;
     
   }
   
-  .light a:hover {
+  .light .a:hover {
     color: rgb(228, 168, 217);
     
   }
   
-  nav{
-    display: flex;
-    width: 80vw;
-    justify-content: end;
-    padding: 1rem;
-  }
-  
-  a {
+  .a {
     font-weight: 600;
     color: #000;
     text-decoration: none;
@@ -88,12 +81,11 @@
   
   .favs-grid{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     gap: 1rem;
     width: 90vw;
     height: auto;
     flex-wrap: wrap;
-    margin: 0 auto;
   }
   
   #contact {

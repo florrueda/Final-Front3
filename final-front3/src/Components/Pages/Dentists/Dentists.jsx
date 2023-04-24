@@ -6,12 +6,11 @@ const Dentists = ({ users, dispatch, favs }) => {
   return (
     <div>
       <h1>Dentistas</h1>
-      <Grid container margin={4}>
+      <div className="favs-grid">
         
           {users.map((user) => (
-            <Grid item xs={2} sm={4} md={4} marginBottom={4}>
+            <Grid item margin={2} key={user.id}>
             <DentistCard
-              key={user.id}
               users={user}
               dispatch={dispatch}
               favs={favs}
@@ -19,7 +18,7 @@ const Dentists = ({ users, dispatch, favs }) => {
                     </Grid>
           ))}
 
-      </Grid>
+      </div>
     </div>
   );
 };

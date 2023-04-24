@@ -9,8 +9,7 @@ const DentistsContainer = () => {
 
     useEffect(() => {
         const dentists = getDentists();
-            dentists.then(res => {dispatch({type: "GET_USERS", payload: res.data})
-        console.log(res);})
+            dentists.then(res => {dispatch({type: "GET_USERS", payload: res.data})})
             dentists.catch(err => console.log(err))
     }, []);
 
