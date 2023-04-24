@@ -9,7 +9,8 @@ const Dentists = ({ users, dispatch, favs }) => {
       <div className="favs-grid">
         
           {users.map((user) => (
-            <Grid item margin={2} key={user.id}>
+            <Grid item margin={2} key={user.id} sx={{ width: 300}
+            }>
             <DentistCard
               users={user}
               dispatch={dispatch}

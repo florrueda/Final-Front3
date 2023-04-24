@@ -13,7 +13,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const DentistCard = ({ users, dispatch, favs }) => {
   return (
-      <Card sx={{ maxWidth: 345 }}>
+      <Card>
         <CardHeader
           avatar={
             <Avatar aria-label="recipe">

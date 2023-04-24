@@ -81,11 +81,9 @@
   
   .favs-grid{
     display: flex;
-    justify-content: center;
-    gap: 1rem;
-    width: 90vw;
-    height: auto;
+    justify-content: space-around;
     flex-wrap: wrap;
+    padding: 1rem;
   }
   
   #contact {

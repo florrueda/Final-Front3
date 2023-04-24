@@ -17,7 +17,7 @@ const Favs = () => {
       <h1>Dentistas Favoritos</h1>
       <div className="favs-grid">
         {state.favs.map((fav) => (
-          <Card sx={{ maxWidth: 345, textAlign: "center" }} key={fav.id}>
+          <Card sx={{ width: 300, textAlign: "center" }} key={fav.id}>
             <CardMedia
               sx={{ height: 140 }}
               image="https://res.cloudinary.com/drzyncm5r/image/upload/v1680836029/doctor_ml6xtf.jpg"
