@@ -144,6 +144,9 @@ const Navbar = (props) => {
         <Toolbar
           sx={{ gap: "20px", display: "flex", justifyContent: "space-between", backgroundColor: "#fff" }}
         >
+        <Box>
+            <img src="https://res.cloudinary.com/drzyncm5r/image/upload/v1680836029/DH_eyp6pf.png" alt="logo" style={{ width: "150px" }} />
+          </Box>
           <IconButton
             color="black"
             aria-label="open drawer"
